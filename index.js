@@ -30,6 +30,46 @@ let myAlbums = [
     image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com%2FMilky-Way-Bas%2Fdp%2FB07HSM5C7K&psig=AOvVaw1RmpZgwn85UwCrFIj5m0LY&ust=1685642555424000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLD6noCSoP8CFQAAAAAdAAAAABAE',
   },
   {
+    title: 'The Stoned Immaculate',
+    artist: {
+      name: 'Curren$y',
+      city: 'New Orleans, Louisiana',
+      born: 'April 4, 1981',
+      albums: ['This Ain\'t No Mixtape', 'Jet Files', 'Pilot Talk', 'Pilot Talk II',
+              'Weekend at Burnie\'s', 'The Stoned Immaculate', 'Pilot Talk III',
+              'Canal Street Confidential', 'Back at Burnie\'s', 'Collection Agency',
+              'Still Stoned on Ocean', 'Pilot Talk IV'],
+      image: 'https://creativeloafing.com/dl63099?display&x=990&y=808'
+
+    },
+    genre: 'Hip-Hop',
+    year: '2012',
+    trackslist: ['What It Look Like', 'Privacy Glass', 'Armoire', 'Take You There', 'Showroom',
+                'Capitol', 'No Squares', 'Sunroof', 'Chasin\' Papers', 'That\'s The Thing','Chandelier',
+                'Fast Cars Faster Women', 'Jet Life', 'Audio Dope 3', 'One More Time', 'J.L.R'],
+    image: 'https://media.pitchfork.com/photos/5929b5a3b1335d7bf169a923/1:1/w_600/fd63d2c6.jpeg'
+  },
+  {
+    title: 'Pilot Talk III',
+    artist: {
+      name: 'Curren$y',
+      city: 'New Orleans, Louisiana',
+      born: 'April 4, 1981',
+      albums: ['This Ain\'t No Mixtape', 'Jet Files', 'Pilot Talk', 'Pilot Talk II',
+              'Weekend at Burnie\'s', 'The Stoned Immaculate', 'Pilot Talk III',
+              'Canal Street Confidential', 'Back at Burnie\'s', 'Collection Agency',
+              'Still Stoned on Ocean', 'Pilot Talk IV'],
+      image: 'https://creativeloafing.com/dl63099?display&x=990&y=808'
+
+    },
+    genre: 'Hip-Hop',
+    year: '2015',
+    trackslist: ['Opening Credits', 'Long as The Lord Say', 'Cargo Planes', 'Froze', 'Get Down',
+                'Sidewalk Show', 'The 560 SL', 'Audio Dope 5', 'Life I Chose', 'Pot Jar',
+                'Search Party', 'All I Know', 'Briefcase', 'Lemonade Mimosas', 'Alert'],
+    image: 'https://i1.sndcdn.com/artworks-000114327639-robtmx-t500x500.jpg'
+  },
+  {
     title: 'Out The Trunk',
     artist: {
       name: 'Larry June',
@@ -281,9 +321,6 @@ app.get('/artist/:name', (req, res) => {
   //Return the artist object to the user
   res.json(artist);
   });
-
-
-
 
 
 app.use((err, req, res, next) => {

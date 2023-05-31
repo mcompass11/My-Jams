@@ -71,3 +71,5 @@
 ::1 - - [31/May/2023:17:51:29 +0000] "GET /artist/Bas HTTP/1.1" 200 52 "-" "PostmanRuntime/7.32.2"
 ::1 - - [31/May/2023:18:03:29 +0000] "GET /artist/Bas HTTP/1.1" 200 72 "-" "PostmanRuntime/7.32.2"
 ::1 - - [31/May/2023:18:07:42 +0000] "GET /artist/Bas HTTP/1.1" 200 266 "-" "PostmanRuntime/7.32.2"
+::1 - - [31/May/2023:19:27:53 +0000] "GET /artist/Bas HTTP/1.1" 200 266 "-" "PostmanRuntime/7.32.2"
+::1 - - [31/May/2023:19:28:11 +0000] "GET /albums HTTP/1.1" 200 5133 "-" "PostmanRuntime/7.32.2"
