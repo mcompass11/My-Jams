@@ -73,3 +73,7 @@
 ::1 - - [31/May/2023:18:07:42 +0000] "GET /artist/Bas HTTP/1.1" 200 266 "-" "PostmanRuntime/7.32.2"
 ::1 - - [31/May/2023:19:27:53 +0000] "GET /artist/Bas HTTP/1.1" 200 266 "-" "PostmanRuntime/7.32.2"
 ::1 - - [31/May/2023:19:28:11 +0000] "GET /albums HTTP/1.1" 200 5133 "-" "PostmanRuntime/7.32.2"
+::1 - - [31/May/2023:20:04:11 +0000] "GET /artist/Curren$y HTTP/1.1" 200 19 "-" "PostmanRuntime/7.32.2"
+::1 - - [31/May/2023:20:04:26 +0000] "GET /artist/Curren$y HTTP/1.1" 200 161 "-" "PostmanRuntime/7.32.2"
+::1 - - [01/Jun/2023:23:51:35 +0000] "GET /albums/Pilot%20Talk%20III HTTP/1.1" 200 754 "-" "PostmanRuntime/7.32.2"
+::1 - - [01/Jun/2023:23:51:52 +0000] "GET /albums HTTP/1.1" 200 10651 "-" "PostmanRuntime/7.32.2"
