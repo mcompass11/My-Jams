@@ -6,7 +6,7 @@ let albumSchema = mongoose.Schema({
     Name: String,
     City: String,
     Birthyear: Date,
-    Albums: [String],
+    Discography: [String],
     Image: String 
   },
   Genre: String,
