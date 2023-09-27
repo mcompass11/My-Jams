@@ -10,6 +10,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true}));
 
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
 const Models = require('./models');
 
 const Albums = Models.Album;
