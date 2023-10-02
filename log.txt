@@ -162,3 +162,5 @@
 ::1 - - [02/Oct/2023:14:57:19 +0000] "POST /users HTTP/1.1" 201 186 "-" "PostmanRuntime/7.33.0"
 ::1 - - [02/Oct/2023:15:10:45 +0000] "POST /users?Username=testuser002&Password=testpassword200 HTTP/1.1" 400 26 "-" "PostmanRuntime/7.33.0"
 ::1 - - [02/Oct/2023:15:37:21 +0000] "GET /albums HTTP/1.1" 201 11924 "-" "PostmanRuntime/7.33.0"
+::1 - - [02/Oct/2023:16:43:36 +0000] "POST /users HTTP/1.1" 201 231 "-" "PostmanRuntime/7.33.0"
+::1 - - [02/Oct/2023:16:44:05 +0000] "POST /users HTTP/1.1" 201 231 "-" "PostmanRuntime/7.33.0"

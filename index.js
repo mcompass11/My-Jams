@@ -10,6 +10,21 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true}));
 
+const cors = require('cors');
+let allowedOrigins = ['http://localhost:8080', 'http://herokuapp.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      //if a specific origin isn't found on the list
+      let message = 'The CORS policy for this application doesn\'t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
@@ -99,13 +114,14 @@ app.get('/artist/:name', passport.authenticate('jwt', {session: false }),(req, r
 
   //Creates a user
   app.post('/users', async (req, res) => {
+    let hashedPassword = Users.hashPassword(req.body.Password);
     await Users.findOne({ Username: req.body.Username }).then((user) => {
       if (user) {
         return res.status(400).send(req.body.Username + ' already exists');
       } else {
         Users.create({
           Username: req.body.Username,
-          Password: req.body.Password,
+          Password: hashedPassword,
           Email: req.body.Email,
           Birthday: req.body.Birthday
         }).then((user) => {res.status(201).json(user)}).catch((error) => {
