@@ -10,8 +10,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true}));
 
+const { check, validationResult } = require('express-validator');
+
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://herokuapp.com'];
+let allowedOrigins = ['http://localhost:8080', 'https://heroku.com'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -113,7 +115,20 @@ app.get('/artist/:name', passport.authenticate('jwt', {session: false }),(req, r
   });
 
   //Creates a user
-  app.post('/users', async (req, res) => {
+  app.post('/users', [
+    //validation logic
+    check('Username', 'Username is required').isLength({min:5}),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+  ],async (req, res) => {
+    //check validation objects for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
     let hashedPassword = Users.hashPassword(req.body.Password);
     await Users.findOne({ Username: req.body.Username }).then((user) => {
       if (user) {
@@ -148,10 +163,23 @@ app.get('/artist/:name', passport.authenticate('jwt', {session: false }),(req, r
   });
 
   //Ability to update user info
-  app.put('/users/:Username', passport.authenticate('jwt', {session: false }) ,async (req, res) => {
+  app.put('/users/:Username', passport.authenticate('jwt', {session: false }), [
+  //validation logic
+  check('Username', 'Username is required').isLength({min:5}),
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+],async (req, res) => {
     //checks to be sure username matches
     if(req.user.Username !== req.params.Username){
         return res.status(400).send('Permission denied');
+    }
+
+    //check validation objects for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
     }
 
     await Users.findOneAndUpdate({ Username: req.params.Username }, {
@@ -224,7 +252,13 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
+//listen for local requests
+// app.listen(8080, () => {
+//   console.log('Your app is listening on port 8080.');
+// });
+
 //listen for requests
-app.listen(8080, () => {
-  console.log('Your app is listening on port 8080.');
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+  console.log('Listening on Port ' + port);
 });
