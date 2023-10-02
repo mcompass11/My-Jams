@@ -40,7 +40,7 @@ app.get('/documentation', (req, res) => {
 });
 
 //returns albums to user
-app.get('/albums', async (req, res) => {
+app.get('/albums', passport.authenticate('jwt', { session: false }),async (req, res) => {
   await Albums.find()
     .then((albums) => {
       res.status(201).json(albums);
@@ -52,7 +52,7 @@ app.get('/albums', async (req, res) => {
 });
 
 //returns data of single album to user
-app.get('/albums/:title', (req, res) => {
+app.get('/albums/:title', passport.authenticate('jwt', {session: false }),(req, res) => {
   console.log("Requested title:", req.params.title);
 
   Albums.findOne({ Title: req.params.title })
@@ -68,7 +68,7 @@ app.get('/albums/:title', (req, res) => {
 //return genre info
 
 //returns data about artist to user
-app.get('/artist/:name', (req, res) => {
+app.get('/artist/:name', passport.authenticate('jwt', {session: false }),(req, res) => {
   //Retrieves albums with artist name matching request parameter
   Albums.find({ 'Artist.Name': req.params.name })
     .then(artistAlbums => {
@@ -120,7 +120,7 @@ app.get('/artist/:name', (req, res) => {
   });
 
   //Retrieves user by username
-  app.get('/users/:Username', async (req, res) => {
+  app.get('/users/:Username', passport.authenticate('jwt', {session: false }),async (req, res) => {
     await Users.findOne({ Username: req.params.Username })
     .then((user) => {
       res.json(user);
@@ -132,7 +132,12 @@ app.get('/artist/:name', (req, res) => {
   });
 
   //Ability to update user info
-  app.put('/users/:Username', async (req, res) => {
+  app.put('/users/:Username', passport.authenticate('jwt', {session: false }) ,async (req, res) => {
+    //checks to be sure username matches
+    if(req.user.Username !== req.params.Username){
+        return res.status(400).send('Permission denied');
+    }
+
     await Users.findOneAndUpdate({ Username: req.params.Username }, {
       $set: {
         Username: req.body.Username,
@@ -152,7 +157,7 @@ app.get('/artist/:name', (req, res) => {
   });
 
   //Add an album to a user favorites
-  app.post('/users/:Username/albums/:AlbumID', async (req, res) => {
+  app.post('/users/:Username/albums/:AlbumID', passport.authenticate('jwt', {session: false }),async (req, res) => {
     await Users.findOneAndUpdate({ Username: req.params.Username }, {
       $push: { FavoriteAlbums: req.params.AlbumID }
     },
@@ -167,7 +172,7 @@ app.get('/artist/:name', (req, res) => {
   });
 
   //Delete a user
-  app.delete('/users/:Username', async (req, res) => {
+  app.delete('/users/:Username', passport.authenticate('jwt', {session: false }),async (req, res) => {
     await Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
@@ -183,7 +188,7 @@ app.get('/artist/:name', (req, res) => {
   });
 
   //Remove an album from user favorites
-  app.delete('/users/:Username/albums/:AlbumID', async (req, res) => {
+  app.delete('/users/:Username/albums/:AlbumID', passport.authenticate('jwt', {session: false }),async (req, res) => {
     await Users.findOneAndRemove({ Username: req.params.Username }, {
       $delete: { FavoriteAlbums: req.params.AlbumID }
     },
