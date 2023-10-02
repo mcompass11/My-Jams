@@ -44,7 +44,12 @@ app.use(morgan('combined', {stream: accessLogStream}));
 
 app.use(express.static('public'));
 
-mongoose.connect('mongodb://localhost:27017/myJamsDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+//local connection
+// mongoose.connect('mongodb://localhost:27017/myJamsDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+//online connection
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 //GET requests

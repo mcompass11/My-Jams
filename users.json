@@ -1,0 +1,4 @@
+{"_id":{"$oid":"65138ddf77d7705cf913ec44"},"Username":"testuser001","Password":"testpassword100","Email":"testuser001@gmail.com","Birthday":{"$date":"1990-02-12T05:00:00Z"},"FavoriteAlbums":[],"__v":0}
+{"_id":{"$oid":"651ada4fe537f71377cfa18c"},"Username":"testuser002","Password":"testpassword200","Email":"testuser002@gmail.com","Birthday":{"$date":"1990-02-12T05:00:00Z"},"FavoriteAlbums":[],"__v":0}
+{"_id":{"$oid":"651af338bc1f306877cf0e95"},"Username":"testuser003","Password":"$2b$10$cQta7agAqWzjqjhnCKk.fe4/UicMCqZa7sypVQZYkgE7lkfkT8c5C","Email":"testuser003@gmail.com","Birthday":{"$date":"1990-02-12T05:00:00Z"},"FavoriteAlbums":[],"__v":0}
+{"_id":{"$oid":"651af355bc1f306877cf0e98"},"Username":"testuser004","Password":"$2b$10$ayNqcifD2q/kD04bDym2E.DaNcDyBwoELGiavd03PumxfDI9byQRO","Email":"testuser004@gmail.com","Birthday":{"$date":"1990-02-12T05:00:00Z"},"FavoriteAlbums":[],"__v":0}
